@@ -1,34 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS_Trello
 
-## Getting Started
+React + NextJS를 이용한 Trello 구현하는 프로젝트입니다.
 
-First, run the development server:
+## Folder Structure
 
-```bash
-npm run dev
-# or
-yarn dev
+```
+NextJS_Trello/
+├── components/
+├── pages/
+├── public/
+├── styles/
+├── package.json
+└── webpack.config.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Issue
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- NextJS에 styled-component를 적용시 문제점
+  사전 렌더링으로 인해 react만 사용할 때처럼 적용하면
+  페이지 소스보기에서 스타일이 적용 안 되어 있는 html를 볼 수 있다.
+  => \_document.jsx 파일을 만들어 특정 코드를 작성해야 한다.
