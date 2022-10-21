@@ -10,6 +10,11 @@ const Input = styled.input`
   background: ${({ theme }) => theme.bgColor};
   color: ${({ theme }) => theme.textColor};
   font-size: 16px;
+
+  &:read-only {
+    background: transparent;
+    color: ${({ theme }) => theme.trelloListTitle};
+  }
 `;
 
 export default Input;
