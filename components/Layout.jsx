@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Layout = (props) => {
   return <Wrapper>{props.children}</Wrapper>;
@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   height: 100vh;
   padding-top: 60px;
   background: ${({ theme }) => theme.bgColor};
+  transition: background 0.3s ease;
 `;
 
 export default Layout;

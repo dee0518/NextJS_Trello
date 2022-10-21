@@ -1,7 +1,7 @@
-import React from "react";
-import Link from "next/link";
-import styled from "styled-components";
-import { a11yHidden } from "../styles/commonStyle";
+import React from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { a11yHidden } from '../styles/commonStyle';
 
 const Menu = () => {
   return (

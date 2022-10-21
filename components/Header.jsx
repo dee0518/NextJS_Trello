@@ -1,10 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import Menu from './Menu';
 
 const Header = (props) => {
   return (
     <HeaderWrapper>
       <H1>NextJS_T</H1>
+      <Menu />
       {props.children}
     </HeaderWrapper>
   );
@@ -23,6 +25,7 @@ const HeaderWrapper = styled.header`
   gap: 15px;
   background-color: ${({ theme }) => theme.bgColor};
   box-shadow: 0 0 15px 3px ${({ theme }) => theme.shadowColor};
+  transition: background 0.3s ease;
 `;
 
 const H1 = styled.h1`

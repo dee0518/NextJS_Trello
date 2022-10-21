@@ -1,11 +1,12 @@
-import { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import GlobalStyle from "../styles/GlobalStyle";
-import { lightMode, darkMode } from "../styles/theme";
-import Layout from "../components/Layout";
-import Header from "../components/Header";
-import Menu from "../components/Menu";
-import Button from "../components/Button";
+import { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from '../styles/GlobalStyle';
+import { lightMode, darkMode } from '../styles/theme';
+import Layout from '../components/Layout';
+import Header from '../components/Header';
+import ThemeButton from '../components/ThemeButton';
+import dark from '../public/assets/images/dark.png';
+import light from '../public/assets/images/light.png';
 
 function MyApp({ Component, pageProps }) {
   const [isLightMode, setIsLightMode] = useState(true);
@@ -17,7 +18,11 @@ function MyApp({ Component, pageProps }) {
       <GlobalStyle />
       <Layout>
         <Header>
-          <Menu />
+          <ThemeButton
+            onClick={onClickTheme}
+            aria-label={isLightMode ? '라이트 모드' : '다크 모드'}
+            bgImg={isLightMode ? light.src : dark.src}
+          />
         </Header>
         <Component {...pageProps} />
       </Layout>
