@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import Input from '../Input';
 import Button from '../Button';
-import ShowOpenButton from './ShowOpenButton';
+import OpenFormButton from './OpenListFormButton';
 
 const TrelloList = ({ trello, edited }) => {
   const [listId, itemId] = edited;
@@ -10,31 +10,28 @@ const TrelloList = ({ trello, edited }) => {
   const onChange = () => {};
 
   return (
-    <Fragment>
-      <ListWrapper>
-        <Input
-          placeholder="Enter list title"
-          readOnly={listId !== id}
-          value={title}
-          onChange={onChange}
-        />
-        {listId !== -1 && (
-          <Fragment>
-            <AddBtn>{itemId === -1 ? 'AddList' : 'AddCard'}</AddBtn>
-            <CancelBtn>Cancel</CancelBtn>
-          </Fragment>
-        )}
-        {card.length > 0 && (
-          <ul>
-            {card.map((item) => (
-              <Card key={item.id}>{item.title}</Card>
-            ))}
-          </ul>
-        )}
-        <ShowOpenListBtn>Add card</ShowOpenListBtn>
-      </ListWrapper>
-      {listId === -2 && <ShowOpenListBtn>Add list</ShowOpenListBtn>}
-    </Fragment>
+    <ListWrapper>
+      <Input
+        placeholder="Enter list title"
+        readOnly={listId !== id}
+        value={title}
+        onChange={onChange}
+      />
+      {listId !== -1 && (
+        <Fragment>
+          <AddBtn>{itemId === -1 ? 'AddList' : 'AddCard'}</AddBtn>
+          <CancelBtn>Cancel</CancelBtn>
+        </Fragment>
+      )}
+      {card.length > 0 && (
+        <ul>
+          {card.map((item) => (
+            <Card key={item.id}>{item.title}</Card>
+          ))}
+        </ul>
+      )}
+      <ShowOpenListBtn>Add card</ShowOpenListBtn>
+    </ListWrapper>
   );
 };
 
@@ -58,7 +55,7 @@ const CancelBtn = styled(AddBtn)`
   background: #878787;
 `;
 
-const ShowOpenListBtn = styled(ShowOpenButton)`
+const ShowOpenListBtn = styled(OpenFormButton)`
   width: 300px;
 `;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ShowOpenButton = styled.button`
+const OpenListFormButton = styled.button`
   position: relative;
   width: 100%;
   height: 40px;
@@ -29,4 +29,4 @@ const ShowOpenButton = styled.button`
   }
 `;
 
-export default ShowOpenButton;
+export default OpenListFormButton;

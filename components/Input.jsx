@@ -6,7 +6,7 @@ const Input = styled.input`
   height: 45px;
   border: 0;
   padding: 10px 13px;
-  border-radius: 6px;
+  border-radius: 4px;
   background: ${({ theme }) => theme.bgColor};
   color: ${({ theme }) => theme.textColor};
   font-size: 16px;

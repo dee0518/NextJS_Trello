@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { RecoilRoot } from 'recoil';
 import GlobalStyle from '../styles/GlobalStyle';
 import { lightMode, darkMode } from '../styles/theme';
 import Layout from '../components/Layout';
@@ -14,19 +15,21 @@ function MyApp({ Component, pageProps }) {
   const onClickTheme = () => setIsLightMode((prevMode) => !prevMode);
 
   return (
-    <ThemeProvider theme={isLightMode ? lightMode : darkMode}>
-      <GlobalStyle />
-      <Layout>
-        <Header>
-          <ThemeButton
-            onClick={onClickTheme}
-            aria-label={isLightMode ? '라이트 모드' : '다크 모드'}
-            bgImg={isLightMode ? light.src : dark.src}
-          />
-        </Header>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={isLightMode ? lightMode : darkMode}>
+        <GlobalStyle />
+        <Layout>
+          <Header>
+            <ThemeButton
+              onClick={onClickTheme}
+              aria-label={isLightMode ? '라이트 모드' : '다크 모드'}
+              bgImg={isLightMode ? light.src : dark.src}
+            />
+          </Header>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 
