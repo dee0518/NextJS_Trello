@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -16,12 +16,23 @@ const Home = () => {
   const resetEditedTrello = useResetRecoilState(editedTrelloState);
   const [isShowAddListForm, setIsShowAddListForm] = useState(true);
   const [isShowAddCardForm, setIsShowAddCardForm] = useState(false);
+  const [listIdForCard, setListIdForCard] = useState(-1);
 
   const onShowOpenListForm = () => setIsShowAddListForm(true);
   const onCloseOpenListForm = () => setIsShowAddListForm(false);
 
-  const onShowOpenCardForm = () => setIsShowAddCardForm(true);
-  const onCloseOpenCardForm = () => setIsShowAddCardForm(false);
+  const onShowOpenCardForm = (id, _) => {
+    setListIdForCard(id);
+    setIsShowAddCardForm(true);
+  };
+
+  useEffect(() => {
+    if (isShowAddCardForm) cardTextareaRef.current.focus();
+  }, [isShowAddCardForm]);
+  const onCloseOpenCardForm = () => {
+    setListIdForCard(-1);
+    setIsShowAddCardForm(false);
+  };
 
   const onClickTitle = (type, id, _) => {
     setEditedTrello({ ...editedTrello, [type]: id });
@@ -33,6 +44,7 @@ const Home = () => {
       { id: creatListId(), title: ListInputRef.current.value, card: [] },
     ]);
     ListInputRef.current.value = '';
+    ListInputRef.current.focus();
   };
   const onChangeTitle = (id, e) =>
     setTrelloList((prevList) =>
@@ -52,17 +64,19 @@ const Home = () => {
     onAddList();
   };
 
-  const onAddCard = (id, _) => {
+  const onAddCard = () => {
     if (cardTextareaRef.current.value.trim() === '') return;
 
     const newId =
       Math.max(
-        ...trelloList.find((trello) => trello.id === id).card.map((c) => c.id),
+        ...trelloList
+          .find((trello) => trello.id === listIdForCard)
+          .card.map((c) => c.id),
         0
       ) + 1;
     setTrelloList((prevList) =>
       prevList.map((list) =>
-        list.id === id
+        list.id === listIdForCard
           ? {
               ...list,
               card: [
@@ -77,14 +91,19 @@ const Home = () => {
           : list
       )
     );
-    setIsShowAddCardForm(false);
+    onCloseOpenCardForm();
+  };
+
+  const onPressEsc = (e) => {
+    if (e.key !== 'Esc') return;
+    onCloseOpenCardForm();
   };
 
   return (
     <HomeWrapper>
       {trelloList.length > 0 &&
         trelloList.map(({ id, title, card }) => {
-          const { listId, cardId } = editedTrello;
+          const { listId } = editedTrello;
           return (
             <ListWrapper key={id}>
               <ListTitle
@@ -101,17 +120,20 @@ const Home = () => {
                     <Card key={'c' + id}>{title}</Card>
                   ))}
               </ul>
-              {isShowAddCardForm ? (
+              {isShowAddCardForm && listIdForCard === id ? (
                 <Fragment>
                   <Textarea
                     placeholder="Enter a title for this card..."
                     ref={cardTextareaRef}
+                    onKeyDown={onPressEsc}
                   />
-                  <AddBtn onClick={onAddCard.bind(null, id)}>Add Card</AddBtn>
+                  <AddBtn onClick={onAddCard}>Add Card</AddBtn>
                   <CancelBtn onClick={onCloseOpenCardForm}>Cancel</CancelBtn>
                 </Fragment>
               ) : (
-                <OpenCardBtn onClick={onShowOpenCardForm}>Add Card</OpenCardBtn>
+                <OpenCardBtn onClick={onShowOpenCardForm.bind(null, id)}>
+                  Add Card
+                </OpenCardBtn>
               )}
             </ListWrapper>
           );
