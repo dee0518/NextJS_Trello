@@ -36,7 +36,7 @@ const MenuList = styled.ul`
 const MenuItem = styled.li`
   font-size: 14px;
   font-weight: bold;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.color10};
 `;
 
 export default Menu;

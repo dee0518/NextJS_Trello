@@ -2,19 +2,7 @@ import { atom } from 'recoil';
 
 const trelloListState = atom({
   key: 'trelloListState',
-  default: [
-    {
-      id: 1,
-      title: 'To do List',
-      card: [
-        {
-          id: 1,
-          title: 'go to study',
-          description: 'hard',
-        },
-      ],
-    },
-  ],
+  default: [],
 });
 
 const editedTrelloState = atom({

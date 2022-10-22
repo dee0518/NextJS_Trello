@@ -132,7 +132,7 @@ const Home = () => {
                 </Fragment>
               ) : (
                 <OpenCardBtn onClick={onShowOpenCardForm.bind(null, id)}>
-                  Add Card
+                  + Add Card
                 </OpenCardBtn>
               )}
             </ListWrapper>
@@ -150,7 +150,7 @@ const Home = () => {
         </ListWrapper>
       ) : (
         <OpenListFormButton onClick={onShowOpenListForm}>
-          Add Another List
+          + Add Another List
         </OpenListFormButton>
       )}
     </HomeWrapper>
@@ -169,9 +169,10 @@ const HomeWrapper = styled.div`
 const ListWrapper = styled.div`
   flex-basis: 300px;
   flex-shrink: 0;
-  padding: 15px 10px 15px;
+  padding: 15px 10px;
   border-radius: 6px;
   background: ${({ theme }) => theme.trelloListBg};
+  box-shadow: ${({ theme }) => theme.trelloShadow};
   transition: background 0.3s ease;
 `;
 
@@ -180,18 +181,27 @@ const ListTitle = styled(Input)`
 `;
 
 const AddBtn = styled(Button)`
-  height: 40px;
   margin-top: 15px;
-  color: #fff;
 `;
 
 const CancelBtn = styled(AddBtn)`
   margin-left: 8px;
   background: #878787;
+
+  &:hover {
+    background: #666;
+  }
 `;
 
 const OpenCardBtn = styled(OpenListFormButton)`
-  background-color;
+  width: 100%;
+  background: none;
+  box-shadow: none;
+  color: ${({ theme }) => theme.color100};
+
+  &:hover {
+    background: none;
+  }
 `;
 
 const Card = styled.li`
@@ -202,7 +212,7 @@ const Card = styled.li`
   font-size: 16px;
   line-height: 1.2;
   vertical-align: middle;
-  background: ${({ theme }) => theme.bgColor};
+  background: ${({ theme }) => theme.white};
 `;
 
 export default Home;
