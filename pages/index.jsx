@@ -212,7 +212,8 @@ const Card = styled.li`
   font-size: 16px;
   line-height: 1.2;
   vertical-align: middle;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.color5};
+  color: ${({ theme }) => theme.color50};
 `;
 
 export default Home;

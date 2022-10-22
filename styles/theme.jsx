@@ -1,6 +1,7 @@
 export const lightMode = {
   bgColor: '#f5f5f5',
   color0: '#F5F8FF',
+  color5: '#EBF2FF',
   color10: '#D8E6FF',
   color20: '#C4DAFF',
   color30: '#9DC2FF',
@@ -22,6 +23,7 @@ export const lightMode = {
 export const darkMode = {
   bgColor: '#252525',
   color0: '#F5F8FF',
+  color5: '#EBF2FF',
   color10: '#D8E6FF',
   color20: '#C4DAFF',
   color30: '#9DC2FF',
