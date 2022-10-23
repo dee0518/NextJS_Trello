@@ -15,4 +15,20 @@ const listIdForCardState = atom({
   default: -1,
 });
 
-export { trelloListState, editedTrelloState, listIdForCardState };
+const preCardTitleState = atom({
+  key: 'preCardTitleState',
+  default: '',
+});
+
+const isShowModalState = atom({
+  key: 'isShowModalState',
+  default: false,
+});
+
+export {
+  trelloListState,
+  editedTrelloState,
+  listIdForCardState,
+  preCardTitleState,
+  isShowModalState,
+};

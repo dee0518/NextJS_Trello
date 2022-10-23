@@ -19,6 +19,8 @@ const Home = () => {
 
   const onToggleListForm = () => setIsListShowForm((prev) => !prev);
   const onAddTrelloList = () => {
+    if (listInputRef.current.value.trim() === '') return;
+
     const id = Math.max(...trelloList.map((trello) => trello.id), 0) + 1;
     setTrelloList((prevList) => [
       ...prevList,

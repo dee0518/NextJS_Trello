@@ -106,7 +106,7 @@ const TrelloGroup = ({ trello: { id, title, cards } }) => {
       {cards.length > 0 && (
         <TrelloList>
           {cards.map((card) => (
-            <TrelloCard key={'c' + card.id} card={card} />
+            <TrelloCard key={'c' + card.id} listId={id} card={card} />
           ))}
         </TrelloList>
       )}

@@ -1,4 +1,5 @@
-import React, { createPortal, Fragment } from 'react';
+import React, { Fragment } from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
 const ModalLayout = ({ modal }) => {
@@ -30,12 +31,13 @@ const DimmedLayer = styled.div`
 `;
 
 const ModalBody = styled.div`
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: 50%;
+  padding: 20px;
   border-radius: 8px;
   transform: translate3d(-50%, -50%, 0);
-  background: ${({ theme }) => theme.color5};
+  background: ${({ theme }) => theme.white};
 `;
 
 export default Modal;
