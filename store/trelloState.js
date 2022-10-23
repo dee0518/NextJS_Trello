@@ -10,4 +10,9 @@ const editedTrelloState = atom({
   default: { listId: -1, cardId: -1 },
 });
 
-export { trelloListState, editedTrelloState };
+const listIdForCardState = atom({
+  key: 'listIdForCardState',
+  default: -1,
+});
+
+export { trelloListState, editedTrelloState, listIdForCardState };
