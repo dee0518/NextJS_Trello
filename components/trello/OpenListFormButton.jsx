@@ -5,6 +5,7 @@ import Button from '../Button';
 const OpenListFormButton = styled(Button)`
   width: 300px;
   height: 40px;
+  flex-shrink: 0;
   color: ${({ theme }) => theme.color0};
   background-color: ${({ theme }) => theme.color80};
   box-shadow: ${({ theme }) => theme.trelloShadow};

@@ -6,8 +6,8 @@ import { lightMode, darkMode } from '../styles/theme';
 import Layout from '../components/Layout';
 import Header from '../components/Header';
 import ThemeButton from '../components/ThemeButton';
-import dark from '../public/assets/images/dark.png';
-import light from '../public/assets/images/light.png';
+import dark from '../public/assets/images/dark.svg';
+import light from '../public/assets/images/light.svg';
 
 function MyApp({ Component, pageProps }) {
   const [isLightMode, setIsLightMode] = useState(true);

@@ -28,7 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     if (isShowAddCardForm) cardTextareaRef.current.focus();
-  }, [isShowAddCardForm]);
+  }, [isShowAddCardForm, listIdForCard]);
   const onCloseOpenCardForm = () => {
     setListIdForCard(-1);
     setIsShowAddCardForm(false);
