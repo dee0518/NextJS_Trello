@@ -15,6 +15,7 @@ const Card = styled.li`
   vertical-align: middle;
   background: ${({ theme }) => theme.color5};
   color: ${({ theme }) => theme.color50};
+  cursor: pointer;
 `;
 
 export default TrelloCard;

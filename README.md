@@ -21,3 +21,4 @@ NextJS_Trello/
    페이지 소스보기에서 스타일이 적용 안 되어 있는 html를 볼 수 있다.
    => \_document.jsx 파일을 만들어 특정 코드를 작성해야 한다.
 2. Card 추가시 boolean 값으로 추가 폼 보이는 여부를 체크했더니 리스트가 여러개일 때 모든 리스트의 카드폼이 보여짐.
+3. NextJS에 styled comonent를 적용하면서 portal할 태그 만들기

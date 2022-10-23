@@ -68,7 +68,7 @@ const TrelloGroup = ({ trello: { id, title, cards } }) => {
     if (cardTextareaRef.current.value.trim() === '') return;
 
     // prettier-ignore
-    const newId = Math.max(...trelloList.find((trello) => trello.id === listIdForCard).card.map((c) => c.id), 0) + 1;
+    const newId = Math.max(...trelloList.find((trello) => trello.id === listIdForCard).cards.map((c) => c.id), 0) + 1;
 
     // prettier-ignore
     setTrelloList((prevList) => prevList.map((list) =>
