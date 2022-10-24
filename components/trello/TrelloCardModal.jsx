@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import Input from '../Input';
-import Textarea from '../TextArea';
-import Button from '../Button';
-import Modal from '../Modal';
+import Image from 'next/image';
 import {
   useRecoilState,
   useRecoilValue,
@@ -16,6 +12,12 @@ import {
   preCardTitleState,
   isShowModalState,
 } from '../../store/trelloState';
+import styled from 'styled-components';
+import Input from '../Input';
+import Textarea from '../TextArea';
+import Button from '../Button';
+import Modal from '../Modal';
+import deleteImg from '../../public/assets/images/delete.svg';
 
 const TrelloCardModal = ({ title, description }) => {
   const { listId, cardId } = useRecoilValue(editedTrelloState);
@@ -56,7 +58,7 @@ const TrelloCardModal = ({ title, description }) => {
   };
 
   return (
-    <CardModal onClose={onCloseModal}>
+    <Modal width={'500'} onClose={onCloseModal}>
       <Title
         name="title"
         placeholder="Enter card title..."
@@ -72,16 +74,16 @@ const TrelloCardModal = ({ title, description }) => {
         value={description}
         onChange={onChange}
       />
-      <DeleteBtn aria-label="모달 닫기" onClick={onClose} />
-    </CardModal>
+      <DeleteBtn onClick={onClose}>
+        <Image src={deleteImg} width="18" height="18" alt="모달 닫기" />
+      </DeleteBtn>
+    </Modal>
   );
 };
 
-const CardModal = styled(Modal)`
-  width: 500px;
-`;
-
 const Title = styled(Input)`
+  padding-left: 0;
+  margin-top: 15px;
   background: none;
   font-size: 24px;
   font-weight: bold;
@@ -104,8 +106,14 @@ const DesTitle = styled.div`
 
 const DeleteBtn = styled(Button)`
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 10px;
+  top: 10px;
+  padding: 10px;
+  background: none;
+
+  &:hover {
+    background: inherit;
+  }
 `;
 
 export default TrelloCardModal;
