@@ -14,12 +14,24 @@ const TrelloCard = ({ listId, card: { id, title, description } }) => {
     setEditedTrello({ listId, cardId: id });
   };
 
+  const onDrag = () => {};
+  const onDragOver = (e) => {
+    e.preventDefault();
+  };
+  const onDrop = () => {};
+
   return (
     <Fragment>
       {isShowModal && (
         <TrelloCardModal title={title} description={description} />
       )}
-      <Card onClick={onOpenModal}>
+      <Card
+        onClick={onOpenModal}
+        draggable={true}
+        onDrag={onDrag}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+      >
         <Title>{title}</Title>
         {description !== '' && (
           <Image src={detail} width="20px" alt="description" />

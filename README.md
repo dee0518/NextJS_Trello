@@ -31,6 +31,7 @@ NextJS_Trello/
    => babel도 작성 필요.
 2. Card 추가시 boolean 값으로 추가 폼 보이는 여부를 체크했더니 리스트가 여러개일 때 모든 리스트의 카드폼이 보여짐.
 3. NextJS에 styled comonent를 적용하면서 portal할 태그 만들기
+4. next-dev.js?3515:20 Warning: `value` prop on `input` should not be null. Consider using an empty string to clear the component or `undefined` for uncontrolled components. 이슈 해결하기
 
 ## 배운점
 
