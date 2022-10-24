@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const ModalLayout = ({ modal }) => {
   return (
     <DimmedLayer onClick={modal.onClose}>
-      <ModalBody>{modal.children}</ModalBody>
+      <ModalBody width={modal.width}>{modal.children}</ModalBody>
     </DimmedLayer>
   );
 };
@@ -34,6 +34,7 @@ const ModalBody = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
+  width: ${({ width }) => width + 'px'};
   padding: 20px;
   border-radius: 8px;
   transform: translate3d(-50%, -50%, 0);

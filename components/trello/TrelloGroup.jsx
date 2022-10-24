@@ -12,6 +12,7 @@ import Textarea from '../TextArea';
 import OpenListFormButton from './OpenListFormButton';
 import TrelloWrapper from './TrelloWrapper';
 import TrelloCard from './TrelloCard';
+import { COMPILER_NAMES } from 'next/dist/shared/lib/constants';
 
 const TrelloGroup = ({ trello: { id, title, cards } }) => {
   const cardTextareaRef = useRef();
@@ -25,12 +26,15 @@ const TrelloGroup = ({ trello: { id, title, cards } }) => {
   const [isShowCardForm, setIsShowCardForm] = useState(false);
 
   useEffect(() => {
+    console.log(isShowCardForm);
     setListIdForCard(isShowCardForm ? id : -1);
   }, [isShowCardForm, setListIdForCard, id]);
 
   useEffect(() => {
+    console.log(listIdForCard);
+    console.log(cardTextareaRef);
     if (listIdForCard !== -1) cardTextareaRef.current.focus();
-  }, [listIdForCard]);
+  }, [listIdForCard, cardTextareaRef]);
 
   const onToggleCardForm = () => setIsShowCardForm((prev) => !prev);
 
