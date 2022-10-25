@@ -9,15 +9,24 @@ const Analysis = () => {
   return (
     <AnalysisWrapper>
       <ChartWrapper>
+        <ChartBg>
+          <ChartBgLine />
+          <ChartBgLine />
+          <ChartBgLine />
+          <ChartBgLine />
+          <ChartBgLine />
+          <ChartBgLine />
+          <ChartBgLine />
+          <ChartBgLine />
+        </ChartBg>
         {trelloList.length > 0 &&
           trelloList.map((trello) => (
-            <Fragment key={trello.id}>
-              <CharLabel>{trello.title}</CharLabel>
-              <CharBar count={trello.cards.length * 10} />
-            </Fragment>
+            <BarWrapper key={trello.id}>
+              <BarLabel>{trello.title}</BarLabel>
+              <Bar count={trello.cards.length * 50} />
+            </BarWrapper>
           ))}
       </ChartWrapper>
-      <ChartWrapper>vx</ChartWrapper>
     </AnalysisWrapper>
   );
 };
@@ -25,25 +34,61 @@ const Analysis = () => {
 const AnalysisWrapper = styled.div`
   display: flex;
   gap: 15px;
+  height: calc(100vh - 60px);
   padding: 20px;
 `;
 
 const ChartWrapper = styled.div`
-  padding: 30px;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 25px;
+  align-items: end;
+  min-width: 300px;
+  padding: 50px 60px 30px 100px;
   border-radius: 6px;
   background: ${({ theme }) => theme.trelloListBg};
   box-shadow: ${({ theme }) => theme.trelloShadow};
   transition: background 0.3s ease;
 `;
 
-const CharLabel = styled.span`
-  font-size: 16px;
+const ChartBg = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 50px 30px 59px 60px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 `;
-const CharBar = styled.div`
+
+const ChartBgLine = styled.div`
+  width: 100%;
+  height: 1px;
+  background: ${({ theme }) => theme.color30};
+`;
+
+const BarWrapper = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-flow: column-reverse nowrap;
+  align-items: center;
+  gap: 10px;
+`;
+
+const BarLabel = styled.span`
+  font-size: 16px;
+  color: ${({ theme }) => theme.color100};
+`;
+const Bar = styled.div`
   width: 50px;
   height: ${(props) => props.count}px;
   border-radius: 4px 4px 0 0;
-  background: ${({ theme }) => theme.color70};
+  background: ${({ theme }) => theme.color60};
 `;
 
 export default Analysis;
