@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 import {
   trelloListState,
@@ -12,7 +12,6 @@ import Textarea from '../TextArea';
 import OpenListFormButton from './OpenListFormButton';
 import TrelloWrapper from './TrelloWrapper';
 import TrelloCard from './TrelloCard';
-import { COMPILER_NAMES } from 'next/dist/shared/lib/constants';
 
 const TrelloGroup = ({ trello: { id, title, cards } }) => {
   const cardTextareaRef = useRef();
@@ -26,15 +25,13 @@ const TrelloGroup = ({ trello: { id, title, cards } }) => {
   const [isShowCardForm, setIsShowCardForm] = useState(false);
 
   useEffect(() => {
-    console.log(isShowCardForm);
-    setListIdForCard(isShowCardForm ? id : -1);
+    const listId = isShowCardForm ? id : -1;
+    setListIdForCard(listId);
   }, [isShowCardForm, setListIdForCard, id]);
 
   useEffect(() => {
-    console.log(listIdForCard);
-    console.log(cardTextareaRef);
-    if (listIdForCard !== -1) cardTextareaRef.current.focus();
-  }, [listIdForCard, cardTextareaRef]);
+    if (isShowCardForm && listIdForCard === id) cardTextareaRef.current.focus();
+  }, [isShowCardForm, listIdForCard, cardTextareaRef, id]);
 
   const onToggleCardForm = () => setIsShowCardForm((prev) => !prev);
 
@@ -116,7 +113,7 @@ const TrelloGroup = ({ trello: { id, title, cards } }) => {
       )}
 
       {isShowCardForm && listIdForCard === id ? (
-        <Fragment>
+        <>
           <Textarea
             placeholder="Enter a title for this card..."
             ref={cardTextareaRef}
@@ -124,7 +121,7 @@ const TrelloGroup = ({ trello: { id, title, cards } }) => {
           />
           <AddBtn onClick={onAddCard}>Add Card</AddBtn>
           <CancelBtn onClick={onToggleCardForm}>Cancel</CancelBtn>
-        </Fragment>
+        </>
       ) : (
         <OpenCardBtn onClick={onToggleCardForm}>+ Add Card</OpenCardBtn>
       )}
