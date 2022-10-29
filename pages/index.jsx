@@ -1,38 +1,36 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { trelloListState } from '../store/trelloState';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { trelloListState, trelloState } from '../store/trelloState';
 import styled from 'styled-components';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import TrelloGroup from '../components/trello/TrelloGroup';
+import Trello from '../components/trello/Trello';
 import OpenListFormButton from '../components/trello/OpenListFormButton';
 import TrelloWrapper from '../components/trello/TrelloWrapper';
 
 const Home = () => {
-  const listInputRef = useRef();
-  const [trelloList, setTrelloList] = useRecoilState(trelloListState);
+  const trelloInputRef = useRef();
+  const trelloList = useRecoilValue(trelloListState);
+  const setTrello = useSetRecoilState(trelloState);
   const [isShowListForm, setIsListShowForm] = useState(true);
 
   useEffect(() => {
-    if (isShowListForm) listInputRef.current.focus();
+    if (isShowListForm) trelloInputRef.current.focus();
   }, [isShowListForm]);
 
   const onToggleListForm = () => setIsListShowForm((prev) => !prev);
-  const onAddTrelloList = () => {
-    if (listInputRef.current.value.trim() === '') return;
+  const onAddTrello = () => {
+    if (trelloInputRef.current.value.trim() === '') return;
 
     const id = Math.max(...trelloList.map((trello) => trello.id), 0) + 1;
-    setTrelloList((prevList) => [
-      ...prevList,
-      { id, title: listInputRef.current.value, cards: [] },
-    ]);
+    setTrello({ id, title: trelloInputRef.current.value, cards: [] });
 
-    listInputRef.current.value = '';
-    listInputRef.current.focus();
+    trelloInputRef.current.value = '';
+    trelloInputRef.current.focus();
   };
 
   const onKeyUpForListForm = (e) => {
-    if (e.key === 'Enter') onAddTrelloList();
+    if (e.key === 'Enter') onAddTrello();
     if (e.key === 'Esc') {
       e.preventDefault();
       setIsListShowForm(false);
@@ -42,17 +40,15 @@ const Home = () => {
   return (
     <HomeWrapper>
       {trelloList.length > 0 &&
-        trelloList.map((trello) => (
-          <TrelloGroup key={trello.id} trello={trello} />
-        ))}
+        trelloList.map((trello) => <Trello key={trello.id} trello={trello} />)}
       {isShowListForm ? (
         <TrelloWrapper>
           <Input
             placeholder="Enter list title..."
-            ref={listInputRef}
+            ref={trelloInputRef}
             onKeyUp={onKeyUpForListForm}
           />
-          <AddBtn onClick={onAddTrelloList}>Add List</AddBtn>
+          <AddBtn onClick={onAddTrello}>Add trello</AddBtn>
           <CancelBtn onClick={onToggleListForm}>Cancel</CancelBtn>
         </TrelloWrapper>
       ) : (
