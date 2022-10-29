@@ -7,10 +7,10 @@ import {
   useSetRecoilState,
 } from 'recoil';
 import {
-  editedTrelloState,
-  trelloListState,
-  preCardTitleState,
+  editedIdState,
+  trelloState,
   isShowModalState,
+  trelloCardState,
 } from '../../store/trelloState';
 import styled from 'styled-components';
 import Input from '../Input';
@@ -19,18 +19,11 @@ import Button from '../Button';
 import Modal from '../Modal';
 import deleteImg from '../../public/assets/images/delete.svg';
 
-const TrelloCardModal = ({ title, description }) => {
-  const { listId, cardId } = useRecoilValue(editedTrelloState);
-  const [preCardTitle, setPreCartTitle] = useRecoilState(preCardTitleState);
+const TrelloCardModal = () => {
+  const trello = useRecoilValue(trelloState);
   const setIsShowModal = useSetRecoilState(isShowModalState);
-
-  const [trelloList, setTrelloList] = useRecoilState(trelloListState);
-  const resetEditedTrello = useResetRecoilState(editedTrelloState);
-  const currentTrelloList = trelloList.find((trello) => trello.id === listId);
-
-  useEffect(() => {
-    setPreCartTitle(title);
-  }, []);
+  const resetEditedTrello = useResetRecoilState(editedIdState);
+  const [card, setCard] = useRecoilState(trelloCardState);
 
   const onClose = () => {
     resetEditedTrello();
@@ -38,23 +31,8 @@ const TrelloCardModal = ({ title, description }) => {
   };
 
   const onCloseModal = () => {};
-  const onChange = (e) => {
-    let { name, value } = e.target;
-
-    if (name === 'title' && value === '') value = preCardTitle;
-
-    setTrelloList((prevList) =>
-      prevList.map((trello) =>
-        trello.id === listId
-          ? {
-              ...trello,
-              cards: trello.cards.map((card) =>
-                card.id === cardId ? { ...card, [name]: value } : card
-              ),
-            }
-          : trello
-      )
-    );
+  const onChange = ({ target: { name, value } }) => {
+    setCard({ ...card, [name]: value });
   };
 
   return (
@@ -62,16 +40,16 @@ const TrelloCardModal = ({ title, description }) => {
       <Title
         name="title"
         placeholder="Enter card title..."
-        value={title}
+        value={card.title}
         onChange={onChange}
       />
-      <SubTitle>in {currentTrelloList.title}</SubTitle>
+      <SubTitle>in {trello.title}</SubTitle>
       <DesTitle>Description</DesTitle>
       <Textarea
         name="description"
         placeholder="more detail..."
         height="300px"
-        value={description}
+        value={card.description}
         onChange={onChange}
       />
       <DeleteBtn onClick={onClose}>

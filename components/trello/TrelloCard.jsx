@@ -2,16 +2,16 @@ import React, { Fragment } from 'react';
 import Image from 'next/image';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { editedTrelloState, isShowModalState } from '../../store/trelloState';
+import { editedIdState, isShowModalState } from '../../store/trelloState';
 import TrelloCardModal from './TrelloCardModal';
 import detail from '../../public/assets/images/detail.svg';
 
-const TrelloCard = ({ listId, card: { id, title, description } }) => {
-  const setEditedTrello = useSetRecoilState(editedTrelloState);
+const TrelloCard = ({ trelloId, card: { id, title, description } }) => {
+  const setEditedTrello = useSetRecoilState(editedIdState);
   const [isShowModal, setIsShowModal] = useRecoilState(isShowModalState);
   const onOpenModal = () => {
     setIsShowModal(true);
-    setEditedTrello({ listId, cardId: id });
+    setEditedTrello({ trelloId, cardId: id });
   };
 
   const onDrag = () => {};
@@ -22,9 +22,7 @@ const TrelloCard = ({ listId, card: { id, title, description } }) => {
 
   return (
     <Fragment>
-      {isShowModal && (
-        <TrelloCardModal title={title} description={description} />
-      )}
+      {isShowModal && <TrelloCardModal />}
       <Card
         onClick={onOpenModal}
         draggable={true}

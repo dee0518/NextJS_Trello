@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { RecoilRoot } from 'recoil';
 import GlobalStyle from '../styles/GlobalStyle';
-import { lightMode, darkMode } from '../styles/theme';
+import { lightMode, darkMode } from '../styles/theme.js';
 import Layout from '../components/Layout';
 import Header from '../components/Header';
 import ThemeButton from '../components/ThemeButton';
