@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import {
   trelloState,
   trelloListState,
   editedIdState,
   trelloIdForCardState,
+  isShowModalState,
 } from '../../store/trelloState';
 import styled from 'styled-components';
 import Input from '../Input';
@@ -16,8 +17,8 @@ import TrelloCard from './TrelloCard';
 
 const Trello = ({ trello }) => {
   const cardTextareaRef = useRef();
+  const isShowModal = useRecoilValue(isShowModalState);
   const [currentTrello, setCurrentTrello] = useRecoilState(trelloState);
-
   const [editedId, setEditedId] = useRecoilState(editedIdState);
   const [trelloIdForCard, setTrelloIdForCard] =
     useRecoilState(trelloIdForCardState);
@@ -33,9 +34,9 @@ const Trello = ({ trello }) => {
   }, [isShowCardForm, setTrelloIdForCard, trello]);
 
   useEffect(() => {
-    if (isShowCardForm && trelloIdForCard === trello.id)
+    if (isShowCardForm && trelloIdForCard === trello.id && !isShowModal)
       cardTextareaRef.current.focus();
-  }, [isShowCardForm, trelloIdForCard, cardTextareaRef, trello]);
+  }, [isShowCardForm, trelloIdForCard, cardTextareaRef, trello, isShowModal]);
 
   const onToggleCardForm = () => setIsShowCardForm((prev) => !prev);
   const onChangeTitle = (e) => setTrelloTitle(e.target.value);
