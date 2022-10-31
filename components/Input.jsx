@@ -8,7 +8,7 @@ const Input = styled.input`
   padding: 10px 13px;
   border-radius: 4px;
   background: ${({ theme }) => theme.bgColor};
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.inputTextColor};
   font-size: 16px;
 
   &:read-only {

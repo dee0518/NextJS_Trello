@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import Head from 'next/head';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { trelloListState, trelloState } from '../store/trelloState';
 import styled from 'styled-components';
@@ -38,25 +39,32 @@ const Home = () => {
   };
 
   return (
-    <HomeWrapper>
-      {trelloList.length > 0 &&
-        trelloList.map((trello) => <Trello key={trello.id} trello={trello} />)}
-      {isShowListForm ? (
-        <TrelloWrapper>
-          <Input
-            placeholder="Enter list title..."
-            ref={trelloInputRef}
-            onKeyUp={onKeyUpForListForm}
-          />
-          <AddBtn onClick={onAddTrello}>Add trello</AddBtn>
-          <CancelBtn onClick={onToggleListForm}>Cancel</CancelBtn>
-        </TrelloWrapper>
-      ) : (
-        <OpenListFormButton onClick={onToggleListForm}>
-          + Add Another List
-        </OpenListFormButton>
-      )}
-    </HomeWrapper>
+    <>
+      <Head>
+        <title>NextJS_Trello</title>
+      </Head>
+      <HomeWrapper>
+        {trelloList.length > 0 &&
+          trelloList.map((trello) => (
+            <Trello key={trello.id} trello={trello} />
+          ))}
+        {isShowListForm ? (
+          <TrelloWrapper>
+            <Input
+              placeholder="Enter list title..."
+              ref={trelloInputRef}
+              onKeyUp={onKeyUpForListForm}
+            />
+            <AddBtn onClick={onAddTrello}>Add Trello</AddBtn>
+            <CancelBtn onClick={onToggleListForm}>Cancel</CancelBtn>
+          </TrelloWrapper>
+        ) : (
+          <OpenListFormButton onClick={onToggleListForm}>
+            + Add Another List
+          </OpenListFormButton>
+        )}
+      </HomeWrapper>
+    </>
   );
 };
 

@@ -7,22 +7,24 @@ import TrelloCardModal from './TrelloCardModal';
 import detail from '../../public/assets/images/detail.svg';
 
 const TrelloCard = ({ trelloId, card: { id, title, description } }) => {
-  const setEditedTrello = useSetRecoilState(editedIdState);
+  const [editedId, setEditedId] = useRecoilState(editedIdState);
   const [isShowModal, setIsShowModal] = useRecoilState(isShowModalState);
   const onOpenModal = () => {
     setIsShowModal(true);
-    setEditedTrello({ trelloId, cardId: id });
+    setEditedId({ trelloId, cardId: id });
   };
 
   const onDrag = () => {};
   const onDragOver = (e) => {
     e.preventDefault();
   };
-  const onDrop = () => {};
+  const onDrop = (e) => {
+    console.log(id);
+  };
 
   return (
     <Fragment>
-      {isShowModal && <TrelloCardModal />}
+      {isShowModal && editedId.cardId === id && <TrelloCardModal />}
       <Card
         onClick={onOpenModal}
         draggable={true}
@@ -45,8 +47,8 @@ const Card = styled.li`
   margin-bottom: 10px;
   border-radius: 5px;
   vertical-align: middle;
-  background: ${({ theme }) => theme.color5};
-  color: ${({ theme }) => theme.color50};
+  background: ${({ theme }) => theme.trelloCardBg};
+  color: ${({ theme }) => theme.trelloCardTitle};
   cursor: pointer;
 `;
 

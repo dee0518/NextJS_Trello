@@ -38,7 +38,7 @@ const ModalBody = styled.div`
   padding: 20px;
   border-radius: 8px;
   transform: translate3d(-50%, -50%, 0);
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.trelloListBg};
 `;
 
 export default Modal;
