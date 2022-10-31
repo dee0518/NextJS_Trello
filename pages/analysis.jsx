@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
@@ -7,27 +8,32 @@ const Analysis = () => {
   const trelloList = useRecoilValue(trelloListState);
 
   return (
-    <AnalysisWrapper>
-      <ChartWrapper>
-        <ChartBg>
-          <ChartBgLine />
-          <ChartBgLine />
-          <ChartBgLine />
-          <ChartBgLine />
-          <ChartBgLine />
-          <ChartBgLine />
-          <ChartBgLine />
-          <ChartBgLine />
-        </ChartBg>
-        {trelloList.length > 0 &&
-          trelloList.map((trello) => (
-            <BarWrapper key={trello.id}>
-              <BarLabel>{trello.title}</BarLabel>
-              <Bar count={trello.cards.length * 50} />
-            </BarWrapper>
-          ))}
-      </ChartWrapper>
-    </AnalysisWrapper>
+    <>
+      <Head>
+        <title>NextJs_Analysis</title>
+      </Head>
+      <AnalysisWrapper>
+        <ChartWrapper>
+          <ChartBg>
+            <ChartBgLine />
+            <ChartBgLine />
+            <ChartBgLine />
+            <ChartBgLine />
+            <ChartBgLine />
+            <ChartBgLine />
+            <ChartBgLine />
+            <ChartBgLine />
+          </ChartBg>
+          {trelloList.length > 0 &&
+            trelloList.map((trello) => (
+              <BarWrapper key={trello.id}>
+                <BarLabel>{trello.title}</BarLabel>
+                <Bar count={trello.cards.length * 50} />
+              </BarWrapper>
+            ))}
+        </ChartWrapper>
+      </AnalysisWrapper>
+    </>
   );
 };
 

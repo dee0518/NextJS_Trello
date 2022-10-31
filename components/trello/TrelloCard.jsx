@@ -18,7 +18,9 @@ const TrelloCard = ({ trelloId, card: { id, title, description } }) => {
   const onDragOver = (e) => {
     e.preventDefault();
   };
-  const onDrop = () => {};
+  const onDrop = (e) => {
+    console.log(id);
+  };
 
   return (
     <Fragment>
