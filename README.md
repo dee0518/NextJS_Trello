@@ -2,6 +2,9 @@
 
 React + NextJS를 이용한 Trello 구현하는 프로젝트입니다.
 recoil + styled-components
+<img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
+<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+<img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
 
 ## Folder Structure
 
@@ -32,6 +35,7 @@ NextJS_Trello/
 2. Card 추가시 boolean 값으로 추가 폼 보이는 여부를 체크했더니 리스트가 여러개일 때 모든 리스트의 카드폼이 보여짐.
 3. NextJS에 styled comonent를 적용하면서 portal할 태그 만들기
 4. next-dev.js?3515:20 Warning: `value` prop on `input` should not be null. Consider using an empty string to clear the component or `undefined` for uncontrolled components. 이슈 해결하기
+5. isShowModal 전역관리를 하다보니 모든 CardModal이 렌더된 이슈.
 
 ## 배운점
 
