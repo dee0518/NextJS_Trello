@@ -88,7 +88,7 @@ const BarWrapper = styled.div`
 
 const BarLabel = styled.span`
   font-size: 16px;
-  color: ${({ theme }) => theme.color100};
+  color: ${({ theme }) => theme.trelloListTitle};
 `;
 const Bar = styled.div`
   width: 50px;

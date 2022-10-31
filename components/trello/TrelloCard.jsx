@@ -48,7 +48,7 @@ const Card = styled.li`
   border-radius: 5px;
   vertical-align: middle;
   background: ${({ theme }) => theme.trelloCardBg};
-  color: ${({ theme }) => theme.trelloCardText};
+  color: ${({ theme }) => theme.trelloCardTitle};
   cursor: pointer;
 `;
 

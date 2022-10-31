@@ -61,25 +61,24 @@ const TrelloCardModal = () => {
 
 const Title = styled(Input)`
   padding-left: 0;
-  margin-top: 15px;
+  margin-top: 25px;
   background: none;
   font-size: 24px;
   font-weight: bold;
-
-  &:focus {
-    background: #fefefe;
-  }
+  color: ${({ theme }) => theme.trelloCardTitle};
 `;
 
 const SubTitle = styled.div`
-  margin-top: 10px;
+  margin-top: 3px;
   font-size: 16px;
+  color: ${({ theme }) => theme.trelloListTitle};
 `;
 
 const DesTitle = styled.div`
-  margin: 30px 0 10px;
+  margin: 40px 0 10px;
   font-size: 24px;
   font-weight: bold;
+  color: ${({ theme }) => theme.trelloListTitle};
 `;
 
 const DeleteBtn = styled(Button)`
