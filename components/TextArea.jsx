@@ -9,6 +9,7 @@ const Textarea = styled.textarea`
   font-size: 14px;
   line-height: 1.25;
   background: ${({ theme }) => theme.bgColor};
+  color: ${({ theme }) => theme.inputTextColor};
 
   &::placeholder {
     color: #ccc;

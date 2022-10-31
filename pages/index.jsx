@@ -55,7 +55,7 @@ const Home = () => {
               ref={trelloInputRef}
               onKeyUp={onKeyUpForListForm}
             />
-            <AddBtn onClick={onAddTrello}>Add trello</AddBtn>
+            <AddBtn onClick={onAddTrello}>Add Trello</AddBtn>
             <CancelBtn onClick={onToggleListForm}>Cancel</CancelBtn>
           </TrelloWrapper>
         ) : (

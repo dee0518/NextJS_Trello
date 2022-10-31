@@ -140,7 +140,7 @@ const OpenCardBtn = styled(OpenListFormButton)`
   width: 100%;
   background: none;
   box-shadow: none;
-  color: ${({ theme }) => theme.color100};
+  color: ${({ theme }) => theme.trelloListTitle};
 
   &:hover {
     background: none;

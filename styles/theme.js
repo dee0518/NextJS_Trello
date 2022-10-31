@@ -14,7 +14,11 @@ export const lightMode = {
   color100: '#0C2146',
   white: '#fff',
   black: '#252525',
+  inputTextColor: '#0C2146',
+  trelloListTitle: '#133774',
   trelloListBg: '#fff',
+  trelloCardBg: '#EBF2FF',
+  trelloCardText: '#4F91FF',
   trelloShadow:
     ' 0px 4px 8px rgba(27, 78, 163, 0.16), 0px 8px 16px rgba(41, 121, 255, 0.16)',
   name: 'light',
@@ -36,7 +40,11 @@ export const darkMode = {
   color100: '#1A1E35',
   white: '#fff',
   black: '#252525',
+  inputTextColor: '#F7F8FC',
+  trelloListTitle: '#B4BBE2',
   trelloListBg: '#3B457B',
+  trelloCardBg: '#4C589E',
+  trelloCardText: '#EFF0FA',
   trelloShadow:
     '0px 4px 8px rgba(59, 69, 123, 0.16), 0px 8px 16px rgba(92, 107, 192, 0.16)',
   name: 'dark',
