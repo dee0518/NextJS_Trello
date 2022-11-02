@@ -6,6 +6,7 @@ import {
   editedIdState,
   trelloIdForCardState,
   isShowModalState,
+  dragIdState,
 } from '../../store/trelloState';
 import styled from 'styled-components';
 import Input from '../Input';
@@ -24,6 +25,7 @@ const Trello = ({ trello }) => {
     useRecoilState(trelloIdForCardState);
   const [trelloList, setTrelloList] = useRecoilState(trelloListState);
   const resetEditedId = useResetRecoilState(editedIdState);
+  const dragId = useRecoilValue(dragIdState);
 
   const [trelloTitle, setTrelloTitle] = useState(trello.title);
   const [isShowCardForm, setIsShowCardForm] = useState(false);
@@ -56,7 +58,7 @@ const Trello = ({ trello }) => {
     if (cardTextareaRef.current.value.trim() === '') return;
 
     // prettier-ignore
-    const newId = Math.max(...trelloList.find((trello) => trello.id === trelloIdForCard).cards.map((c) => c.id), 0) + 1;
+    const newId = Math.max(...trelloList.map((trello) => trello.cards.map(c => c.id)).flat(), 0) + 1;
 
     // prettier-ignore
     setTrelloList((prevList) => prevList.map((trello) =>
@@ -101,8 +103,10 @@ const Trello = ({ trello }) => {
     e.preventDefault();
   };
   const onDrop = (e) => {
-    const { trelloId, cardId } = JSON.parse(localStorage.getItem('dragInfo'));
+    e.preventDefault();
+    const { trelloId, cardId } = dragId;
 
+    if (trelloId === -1) return;
     const afterIdx = getAfterElementId(e.clientY, e.target);
     let newTrelloList = trelloList;
     const currentTrello = trelloList.find((trello) => trello.id === trelloId);
@@ -134,7 +138,6 @@ const Trello = ({ trello }) => {
       });
     }
 
-    console.log(newTrelloList);
     setTrelloList(newTrelloList);
   };
 

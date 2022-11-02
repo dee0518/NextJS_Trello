@@ -34,22 +34,22 @@ const trelloListState = atom({
       title: 'today',
       cards: [
         {
-          id: 1,
+          id: 5,
           title: 'adf',
           description: 'sdkfjalkdjf',
         },
         {
-          id: 2,
+          id: 6,
           title: 'sg',
           description: '',
         },
         {
-          id: 3,
+          id: 7,
           title: 'sf',
           description: 'sdkfjalkdjf',
         },
         {
-          id: 4,
+          id: 8,
           title: 'afyuiyttdf',
           description: '',
         },
@@ -60,6 +60,11 @@ const trelloListState = atom({
 
 const editedIdState = atom({
   key: 'editedIdState',
+  default: { trelloId: -1, cardId: -1 },
+});
+
+const dragIdState = atom({
+  key: 'dragIdState',
   default: { trelloId: -1, cardId: -1 },
 });
 
@@ -133,6 +138,7 @@ const trelloCardState = selector({
 export {
   trelloState,
   editedIdState,
+  dragIdState,
   trelloIdForCardState,
   preCardTitleState,
   isShowModalState,
