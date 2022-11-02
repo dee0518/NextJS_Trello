@@ -9,48 +9,33 @@ const trelloListState = atom({
       cards: [
         {
           id: 1,
-          title: 'adf',
-          description: 'sdkfjalkdjf',
+          title: 'NextJS study',
+          description: '온라인 강의 및 블로그 정리',
         },
         {
           id: 2,
-          title: 'sg',
-          description: '',
+          title: 'typescript',
+          description: '예제 만들기',
         },
         {
           id: 3,
-          title: 'sf',
-          description: 'sdkfjalkdjf',
-        },
-        {
-          id: 4,
-          title: 'afyuiyttdf',
-          description: '',
+          title: 'Webpack',
+          description: '빌드해보기',
         },
       ],
     },
     {
       id: 2,
-      title: 'today',
+      title: 'Shopping List',
       cards: [
         {
-          id: 5,
-          title: 'adf',
-          description: 'sdkfjalkdjf',
-        },
-        {
-          id: 6,
-          title: 'sg',
+          id: 4,
+          title: '가을옷',
           description: '',
         },
         {
-          id: 7,
-          title: 'sf',
-          description: 'sdkfjalkdjf',
-        },
-        {
-          id: 8,
-          title: 'afyuiyttdf',
+          id: 5,
+          title: '발 온열기',
           description: '',
         },
       ],
