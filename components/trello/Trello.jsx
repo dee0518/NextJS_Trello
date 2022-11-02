@@ -26,6 +26,7 @@ const Trello = ({ trello }) => {
   const [trelloList, setTrelloList] = useRecoilState(trelloListState);
   const resetEditedId = useResetRecoilState(editedIdState);
   const dragId = useRecoilValue(dragIdState);
+  const resetDragId = useResetRecoilState(dragIdState);
 
   const [trelloTitle, setTrelloTitle] = useState(trello.title);
   const [isShowCardForm, setIsShowCardForm] = useState(false);
@@ -83,7 +84,9 @@ const Trello = ({ trello }) => {
   };
 
   const getAfterElementId = (prevY, cur) => {
-    const elements = [...cur.closest('div').querySelector('ul').children];
+    const children = cur.closest('div').querySelector('ul')?.children;
+    if (!children) return 0;
+    const elements = [...children];
 
     const result = elements.reduce(
       (acc, element, idx) => {
@@ -139,6 +142,7 @@ const Trello = ({ trello }) => {
     }
 
     setTrelloList(newTrelloList);
+    resetDragId();
   };
 
   return (

@@ -29,7 +29,10 @@ const TrelloCard = ({ trelloId, card: { id, title, description } }) => {
     e.preventDefault();
   };
 
-  const onDragEnd = () => resetDragId();
+  const onDragEnd = () => {
+    console.log('R');
+    resetDragId();
+  };
 
   return (
     <Fragment>
