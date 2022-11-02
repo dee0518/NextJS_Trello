@@ -80,8 +80,10 @@ const Trello = ({ trello }) => {
     if (e.key === 'Enter') onAddCard();
   };
 
+  const onDrop = () => {};
+
   return (
-    <TrelloWrapper>
+    <TrelloWrapper onDrop={onDrop}>
       <TrelloTitle
         placeholder="Enter list title..."
         readOnly={editedId.trelloId !== trello.id}
