@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { editedIdState, isShowModalState } from '../../store/trelloState';
 import TrelloCardModal from './TrelloCardModal';
@@ -14,24 +14,14 @@ const TrelloCard = ({ trelloId, card: { id, title, description } }) => {
     setEditedId({ trelloId, cardId: id });
   };
 
-  const onDrag = () => {};
-  const onDragOver = (e) => {
-    e.preventDefault();
-  };
-  const onDrop = (e) => {
-    console.log(id);
+  const onDragStart = (e) => {
+    localStorage.setItem('dragInfo', JSON.stringify({ trelloId, cardId: id }));
   };
 
   return (
     <Fragment>
       {isShowModal && editedId.cardId === id && <TrelloCardModal />}
-      <Card
-        onClick={onOpenModal}
-        draggable={true}
-        onDrag={onDrag}
-        onDragOver={onDragOver}
-        onDrop={onDrop}
-      >
+      <Card onClick={onOpenModal} draggable={true} onDragStart={onDragStart}>
         <Title>{title}</Title>
         {description !== '' && (
           <Image src={detail} width="20px" alt="description" />
@@ -52,7 +42,8 @@ const Card = styled.li`
   cursor: pointer;
 `;
 
-const Title = styled.div`
+const Title = styled.span`
+  display: block;
   margin-bottom: 5px;
   font-size: 16px;
   line-height: 1.2;

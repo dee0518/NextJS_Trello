@@ -2,7 +2,60 @@ import { atom, selector } from 'recoil';
 
 const trelloListState = atom({
   key: 'trelloListState',
-  default: [],
+  default: [
+    {
+      id: 1,
+      title: 'To do List',
+      cards: [
+        {
+          id: 1,
+          title: 'adf',
+          description: 'sdkfjalkdjf',
+        },
+        {
+          id: 2,
+          title: 'sg',
+          description: '',
+        },
+        {
+          id: 3,
+          title: 'sf',
+          description: 'sdkfjalkdjf',
+        },
+        {
+          id: 4,
+          title: 'afyuiyttdf',
+          description: '',
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: 'today',
+      cards: [
+        {
+          id: 1,
+          title: 'adf',
+          description: 'sdkfjalkdjf',
+        },
+        {
+          id: 2,
+          title: 'sg',
+          description: '',
+        },
+        {
+          id: 3,
+          title: 'sf',
+          description: 'sdkfjalkdjf',
+        },
+        {
+          id: 4,
+          title: 'afyuiyttdf',
+          description: '',
+        },
+      ],
+    },
+  ],
 });
 
 const editedIdState = atom({

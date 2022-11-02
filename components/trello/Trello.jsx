@@ -80,10 +80,66 @@ const Trello = ({ trello }) => {
     if (e.key === 'Enter') onAddCard();
   };
 
-  const onDrop = () => {};
+  const getAfterElementId = (prevY, cur) => {
+    const elements = [...cur.closest('div').querySelector('ul').children];
+
+    const result = elements.reduce(
+      (acc, element, idx) => {
+        const offset = prevY - element.offsetTop - element.offsetHeight / 3;
+
+        if (offset < 0 && offset > acc.offset) {
+          return { offset, idx };
+        } else return acc;
+      },
+      { offset: Number.MIN_SAFE_INTEGER, idx: -1 }
+    );
+
+    return result.idx === -1 ? elements.length - 1 : result.idx;
+  };
+
+  const onDragOver = (e) => {
+    e.preventDefault();
+  };
+  const onDrop = (e) => {
+    const { trelloId, cardId } = JSON.parse(localStorage.getItem('dragInfo'));
+
+    const afterIdx = getAfterElementId(e.clientY, e.target);
+    let newTrelloList = trelloList;
+    const currentTrello = trelloList.find((trello) => trello.id === trelloId);
+    const currentCard = currentTrello.cards.find((card) => card.id === cardId);
+    const restCards = currentTrello.cards.filter((card) => card.id !== cardId);
+
+    if (trello.id === trelloId) {
+      const beforeCards = restCards.filter((_, i) => i < afterIdx);
+      const afterCards = restCards.filter((_, i) => i >= afterIdx);
+      newTrelloList = newTrelloList.map((trello) =>
+        trello.id === trelloId
+          ? { ...trello, cards: [...beforeCards, currentCard, ...afterCards] }
+          : trello
+      );
+    } else {
+      const dropTrelloCards = trelloList.find((t) => t.id === trello.id).cards;
+      const beforeCards = dropTrelloCards.filter((_, i) => i < afterIdx);
+      const afterCards = dropTrelloCards.filter((_, i) => i >= afterIdx);
+
+      newTrelloList = newTrelloList.map((newTrello) => {
+        if (newTrello.id === trello.id)
+          return {
+            ...newTrello,
+            cards: [...beforeCards, currentCard, ...afterCards],
+          };
+        else if (newTrello.id === trelloId)
+          return { ...newTrello, cards: restCards };
+        else return newTrello;
+      });
+    }
+
+    console.log(newTrelloList);
+    setTrelloList(newTrelloList);
+  };
 
   return (
-    <TrelloWrapper onDrop={onDrop}>
+    <TrelloWrapper onDrop={onDrop} onDragOver={onDragOver} draggable={true}>
       <TrelloTitle
         placeholder="Enter list title..."
         readOnly={editedId.trelloId !== trello.id}
