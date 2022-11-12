@@ -99,7 +99,7 @@ const Trello = ({ trello }) => {
       { offset: Number.MIN_SAFE_INTEGER, idx: -1 }
     );
 
-    return result.idx === -1 ? elements.length - 1 : result.idx;
+    return result.idx === -1 ? elements.length : result.idx;
   };
 
   const onDragOver = (e) => {
