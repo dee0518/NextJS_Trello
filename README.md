@@ -1,5 +1,7 @@
 # NextJS_Trello
 <img src="https://img.shields.io/badge/-styled--components-DB7093?style=flat&logo=styledComponents&logoColor=white"> <img src="https://img.shields.io/badge/-react-61DAFB?style=flat&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white">
+<br>
+[https://next-trello-ochre.vercel.app/](https://next-trello-ochre.vercel.app/)
 
 <br>
 
@@ -72,6 +74,34 @@ NextJS_Trello/
       // TrelloCard.jsx 51
       {isShowModal && editedId.cardId === id && <TrelloCardModal />}
     ```
+
+4. Card DnD: Trello List의 마지막 순서로 옮길 때 사라지는 이슈
+   * 원인 : 옮겨질 위치를 drop영역의 Card index를 이용하여 찾고 있기 때문이다. 마지막 순서는 마지막 index에 1을 더해야 알 수 있는 부분으로 기존 index에서 찾게 되면 -1이 되어 버린다. 
+   * 해결 : index가 -1에 따라 삼항 연산자로 다른 return 값을 주었다.
+   <br>
+   
+   ```javascript
+   // Trello.jsx 86
+   const getAfterElementId = (prevY, cur) => {
+    const children = cur.closest('div').querySelector('ul')?.children;
+    if (!children) return 0;
+    const elements = [...children];
+
+    const result = elements.reduce(
+      (acc, element, idx) => {
+        const offset = prevY - element.offsetTop - element.offsetHeight / 3;
+
+        if (offset < 0 && offset > acc.offset) {
+          return { offset, idx };
+        } else return acc;
+      },
+      { offset: Number.MIN_SAFE_INTEGER, idx: -1 }
+    );
+
+    return result.idx === -1 ? elements.length : result.idx;
+  };
+   ```
+
 <!-- 4. next-dev.js?3515:20 Warning: `value` prop on `input` should not be null. Consider using an empty string to clear the component or `undefined` for uncontrolled components. 이슈 해결하기-->
 <br>
 
