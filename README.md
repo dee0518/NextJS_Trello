@@ -133,4 +133,7 @@ NextJS_Trello/
    | 서버로 요청이 들어오면 가장 먼저 실행되는 컴포넌트 | \_app 다음에 실행되는 컴포넌트                          |
    | 컴포넌트에 공통으로 적용할 속성 관리               | 공통적으로 사용할 head, body 태그 안에 들어갈 내용 작성 |
 
+3. Next.js SEO 최적화되는 이유
+Next.js가 SEO 최적화가 될 수 밖에 없는 이유에 대해서 알게 되었다. SEO 최적화를 시키기 위해서는 head의 메타태그, <h1>, <p>, <img>, <a> 태그 등을 잘 활용하여 상위로 노출되도록 해야한다. hydrate 단계 전에 웹 크롤러가 html를 수집하게 되는데 이때 Next.js는 SSR을 통해 인터렉션이 연결되어 있지 않은 html를 생성하고 React는 id가 root인 div만을 가진 html를 생성한다. 
+[Next.js 기초](https://velog.io/@dee0518/Next.js-%EA%B8%B0%EC%B4%88-%EB%8B%A4%EC%A7%80%EA%B8%B0-1)
 <!-- 3.  recoil의 state를 사용하는 방법 -->
